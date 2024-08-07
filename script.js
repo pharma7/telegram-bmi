@@ -8,7 +8,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const greetingDiv = document.getElementById("greeting");
     const username = tg.initDataUnsafe?.user?.first_name || "Пользователь";
-    greetingDiv.textContent = `Привет, ${username}!`;
+    const avatarUrl = tg.initDataUnsafe?.user?.photo_url || "";
+
+    greetingDiv.innerHTML = `
+        <div class="text">
+            <span role="img" aria-label="wave">👋</span> Привет, ${username}!
+        </div>
+        <div class="avatar">
+            ${avatarUrl ? `<img src="${avatarUrl}" alt="Avatar">` : ""}
+        </div>
+    `;
+
 
     const calculateBtn = document.getElementById("calculateBtn");
     const resetBtn = document.getElementById("resetBtn");

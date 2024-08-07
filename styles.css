@@ -122,3 +122,33 @@ li {
     font-size: 18px;
     color: var(--telegram-dark-blue);
 }
+
+.greeting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em; /* Increase font size */
+    margin-bottom: 20px;
+}
+
+.greeting .text {
+    display: flex;
+    align-items: center;
+}
+
+.greeting .text span {
+    margin-right: 10px;
+}
+
+.greeting .avatar {
+    width: 50px; /* Size of the avatar */
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.greeting .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
