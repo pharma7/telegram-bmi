@@ -1,0 +1,88 @@
+/* styles.css */
+:root {
+    --telegram-blue: #0088cc;
+    --telegram-light-blue: #e6f3f9;
+    --telegram-dark-blue: #004d73;
+    --telegram-gray: #f3f4f6;
+    --telegram-font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--telegram-font-family);
+    background-color: var(--telegram-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: var(--telegram-dark-blue);
+    margin-bottom: 20px;
+}
+
+#greeting {
+    color: var(--telegram-dark-blue);
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.bmi-form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: var(--telegram-dark-blue);
+}
+
+input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--telegram-light-blue);
+    border-radius: 4px;
+    font-size: 18px;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: var(--telegram-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--telegram-dark-blue);
+}
+
+.bmi-result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--telegram-dark-blue);
+}
