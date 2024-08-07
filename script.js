@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const tg = window.Telegram.WebApp;
     tg.ready();
 
+    // Set isExpanded to true
+    tg.expand();
+
     const greetingDiv = document.getElementById("greeting");
     const username = tg.initDataUnsafe?.user?.first_name || "Пользователь";
     greetingDiv.textContent = `Привет, ${username}!`;
@@ -10,13 +13,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const calculateBtn = document.getElementById("calculateBtn");
     const resetBtn = document.getElementById("resetBtn");
     const viewHistoryBtn = document.getElementById("viewHistoryBtn");
+    const viewUserInfoBtn = document.getElementById("viewUserInfoBtn");
     const clearHistoryBtn = document.getElementById("clearHistoryBtn");
     const backBtn = document.getElementById("backBtn");
+    const backToCalcBtn = document.getElementById("backToCalcBtn");
     const resultDiv = document.getElementById("result");
     const historyList = document.getElementById("historyList");
+    const userInfoList = document.getElementById("userInfoList");
 
     const calculatorScreen = document.getElementById("calculatorScreen");
     const historyScreen = document.getElementById("historyScreen");
+    const userInfoScreen = document.getElementById("userInfoScreen");
 
     function updateHistory() {
         historyList.innerHTML = "";
@@ -27,6 +34,32 @@ document.addEventListener("DOMContentLoaded", function() {
             historyList.appendChild(listItem);
         });
     }
+
+    function updateUserInfo() {
+        userInfoList.innerHTML = "";
+        const user = tg.initDataUnsafe.user;
+        const userInfo = [
+            `Имя пользователя: ${user?.username || 'N/A'}`,
+            `ID: ${user?.id || 'N/A'}`,
+            `Полное имя: ${user?.first_name || ''} ${user?.last_name || ''}`,
+            `Язык: ${tg.initDataUnsafe.language || 'N/A'}`,
+            `Платформа: ${tg.initDataUnsafe.platform || 'N/A'}`
+        ];
+
+        userInfo.forEach(info => {
+            const listItem = document.createElement("li");
+            listItem.textContent = info;
+            userInfoList.appendChild(listItem);
+        });
+    }
+
+    // Handle mobile keyboard input and hide when done
+    const inputFields = document.querySelectorAll('input[type="number"]');
+    inputFields.forEach(input => {
+        input.addEventListener("blur", function() {
+            window.scrollTo(0, 0);  // Scroll to the top after input to hide keyboard
+        });
+    });
 
     calculateBtn.addEventListener("click", function() {
         const height = parseFloat(document.getElementById("height").value) / 100;
@@ -70,6 +103,12 @@ document.addEventListener("DOMContentLoaded", function() {
         historyScreen.style.display = "block";
     });
 
+    viewUserInfoBtn.addEventListener("click", function() {
+        updateUserInfo();
+        calculatorScreen.style.display = "none";
+        userInfoScreen.style.display = "block";
+    });
+
     clearHistoryBtn.addEventListener("click", function() {
         localStorage.removeItem("bmiHistory");
         updateHistory();
@@ -77,6 +116,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     backBtn.addEventListener("click", function() {
         historyScreen.style.display = "none";
+        calculatorScreen.style.display = "block";
+    });
+
+    backToCalcBtn.addEventListener("click", function() {
+        userInfoScreen.style.display = "none";
         calculatorScreen.style.display = "block";
     });
 });

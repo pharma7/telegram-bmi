@@ -13,14 +13,15 @@
         <div id="greeting"></div>
         <div class="bmi-form">
             <label for="height">Рост (в см):</label>
-            <input type="number" id="height" placeholder="Введите ваш рост" min="100" max="230">
+            <input type="number" id="height" placeholder="Введите ваш рост" min="100" max="230" inputmode="numeric">
             
             <label for="weight">Вес (в кг):</label>
-            <input type="number" id="weight" placeholder="Введите ваш вес" min="30" max="300">
+            <input type="number" id="weight" placeholder="Введите ваш вес" min="30" max="300" inputmode="numeric">
             
             <button id="calculateBtn">Рассчитать ИМТ</button>
             <button id="resetBtn">Сбросить</button>
             <button id="viewHistoryBtn">Посмотреть Историю</button>
+            <button id="viewUserInfoBtn">О пользователе</button>
         </div>
         <div class="bmi-result" id="result"></div>
     </div>
@@ -30,6 +31,12 @@
         <ul id="historyList"></ul>
         <button id="clearHistoryBtn">Очистить Историю</button>
         <button id="backBtn">Назад к калькулятору</button>
+    </div>
+
+    <div id="userInfoScreen" class="container" style="display:none;">
+        <h1>О пользователе</h1>
+        <ul id="userInfoList"></ul>
+        <button id="backToCalcBtn">Назад к калькулятору</button>
     </div>
 
     <script src="script.js"></script>

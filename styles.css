@@ -104,3 +104,21 @@ li {
     font-size: 18px;
     color: var(--telegram-dark-blue);
 }
+
+
+#userInfoScreen {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid var(--telegram-light-blue);
+    font-size: 18px;
+    color: var(--telegram-dark-blue);
+}
