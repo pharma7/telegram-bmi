@@ -62,33 +62,41 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     calculateBtn.addEventListener("click", function() {
-        const height = parseFloat(document.getElementById("height").value) / 100;
+        const height = parseFloat(document.getElementById("height").value);
         const weight = parseFloat(document.getElementById("weight").value);
 
-        if (height >= 1 && height <= 2.3 && weight >= 30 && weight <= 300) {
-            const bmi = (weight / (height * height)).toFixed(2);
-            let category = "";
-
-            if (bmi < 18.5) {
-                category = "Недостаточный вес";
-            } else if (bmi >= 18.5 && bmi < 24.9) {
-                category = "Нормальный вес";
-            } else if (bmi >= 25 && bmi < 29.9) {
-                category = "Избыточный вес";
-            } else {
-                category = "Ожирение";
-            }
-
-            const resultText = `Ваш ИМТ: ${bmi} (${category})`;
-            resultDiv.textContent = resultText;
-
-            // Save to history
-            const history = JSON.parse(localStorage.getItem("bmiHistory")) || [];
-            history.push(resultText);
-            localStorage.setItem("bmiHistory", JSON.stringify(history));
-        } else {
-            resultDiv.textContent = "Пожалуйста, введите корректные рост и вес.";
+        if (height < 100 || height > 230 || weight < 30 || weight > 300) {
+            tg.showPopup({
+                title: "Ошибка ввода",
+                message: "Пожалуйста, введите корректные значения для роста (100-230 см) и веса (30-300 кг).",
+                buttons: [{
+                    text: "Закрыть",
+                    type: "close"
+                }]
+            });
+            return;
         }
+
+        const bmi = (weight / ((height / 100) * (height / 100))).toFixed(2);
+        let category = "";
+
+        if (bmi < 18.5) {
+            category = "Недостаточный вес";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            category = "Нормальный вес";
+        } else if (bmi >= 25 && bmi < 29.9) {
+            category = "Избыточный вес";
+        } else {
+            category = "Ожирение";
+        }
+
+        const resultText = `Ваш ИМТ: ${bmi} (${category})`;
+        resultDiv.textContent = resultText;
+
+        // Save to history
+        const history = JSON.parse(localStorage.getItem("bmiHistory")) || [];
+        history.push(resultText);
+        localStorage.setItem("bmiHistory", JSON.stringify(history));
     });
 
     resetBtn.addEventListener("click", function() {
