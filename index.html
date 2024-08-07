@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор ИМТ</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Telegram Mini App Initialization -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div id="calculatorScreen" class="container">
         <h1>Калькулятор ИМТ</h1>
         <div id="greeting"></div>
         <div class="bmi-form">
@@ -21,11 +20,18 @@
             
             <button id="calculateBtn">Рассчитать ИМТ</button>
             <button id="resetBtn">Сбросить</button>
-
-
+            <button id="viewHistoryBtn">Посмотреть Историю</button>
         </div>
         <div class="bmi-result" id="result"></div>
     </div>
+
+    <div id="historyScreen" class="container" style="display:none;">
+        <h1>История ИМТ</h1>
+        <ul id="historyList"></ul>
+        <button id="clearHistoryBtn">Очистить Историю</button>
+        <button id="backBtn">Назад к калькулятору</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
